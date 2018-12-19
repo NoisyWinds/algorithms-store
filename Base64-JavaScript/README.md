@@ -170,5 +170,21 @@
   console.log(base64encode(text));
 ```
 
+### 二、更优的做法 window.btoa
+Web Api 已经实现了字符串转 base64 的需求，甚至通过了一些优化，效率会比上面的位运算更优：  
+
+[window.btoa Web API 接口文档](https://developer.mozilla.org/zh-CN/docs/Web/API/WindowBase64/btoa)
+
+```javascript
+let encodedData = window.btoa("this is a example");
+console.log(encodedData); // dGhpcyBpcyBhIGV4YW1wbGU=
+
+let decodeData = window.atob(encodedData);
+console.log(decodeData); // this is a example
+```
+
+这篇文章原理说的很棒，但是我选择 btoa...
+
+ 
 
 
