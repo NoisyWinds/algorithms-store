@@ -14,7 +14,8 @@
 
 ### 算法列表
 - [Base64 的原理](./Base64-JavaScript/README.md) | JavaScript 
-- [简单高斯模糊的原理](./Gaussian-Blur-Python/README.md) | Python
+- [Gaussion blur 简单高斯模糊的原理](./Gaussian-Blur-Python/README.md) | Python
+- [Tree 树结构及其衍生](./Tree/README.md) | Javascript
 - 待续... 
 
 ## 交流或者有一些问题 
