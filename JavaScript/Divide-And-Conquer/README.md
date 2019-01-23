@@ -36,11 +36,68 @@
  这就是归并排序核心思想，把排序问题变成了排序子序列然后合并有序子序列这个小问题了。
  那么如何合并子序列？
  
-方法很简单，就以[5,8] [2,4] 举例：
- 
- 
- 
- 
+方法很简单。就是平时双指针的方式，就以[2,4,5,8] [1,3,6,7] 举例：
+
+- 设置两个指针（i = 0，j = 0）分别为与开头 [**2**,4,5,8] [**1**,3,6,7]
+- 因为 1 < 2 取 1 ，j 向后推一位 （i = 0，j = 1）[**2**,4,5,8] [1,**3**,6,7]
+- 又因为 2 < 3 取 2，i 向后推一位 （i = 1，j = 1） [2,**4**,5,8] [1,**3**,6,7]
+- ...
+
+按指针位置两两对比，最终实现排序。
+
+JavaScript 详细代码：
+```javascript
+  const arr = [5, 8, 4, 2, 1, 6, 7, 3];
+
+  class MergeSort {
+
+    constructor(arr) {
+      // 开辟一个临时数组用于储存结果
+      this.temp = [];
+      this.arr = arr;
+      this.sort(0, arr.length - 1);
+      console.log(this.temp);
+    }
+
+    sort(left, right) {
+      if (left < right) {
+        let middle = ~~((left + right) / 2);
+        this.sort(left, middle); // 递归排序左数组
+        this.sort(middle + 1, right); // 递归排序右数组
+        this.merge(left, middle, right);
+      }
+    }
+
+    merge(left, middle, right) {
+      let i = left; //左指针
+      let j = middle + 1;//右指针
+      let t = 0; //temp 数组指针
+      while (i <= middle && j <= right) {
+        if (this.arr[i] <= this.arr[j]) {
+          this.temp[t++] = this.arr[i++];
+        } else {
+          this.temp[t++] = this.arr[j++];
+        }
+      }
+      while (i <= middle) {//将左边剩下的元素填充进 temp 中
+        this.temp[t++] = this.arr[i++];
+      }
+      while (j <= right) {//将右边剩下的元素填充进 temp 中
+        this.temp[t++] = this.arr[j++];
+      }
+      t = 0;
+      while (left <= right) {
+        this.arr[left++] = this.temp[t++];
+      }
+    }
+  }
+
+  new MergeSort(arr);
+```
+排序以上数组，一一对比需要（8 * 7 / 2）28 次，时间复杂度为 O(n^2) 而归并排序只需要对比 16 次，每次合并操作的时间复杂度为O(n)，
+排序时间O(log2n), 一共的时间复杂度就是O(nlogn)。并且，比起一些排序算法来说，效率稳定。
+
+
  
 
  
