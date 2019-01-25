@@ -97,7 +97,10 @@ JavaScript 详细代码：
 排序以上数组，一一对比需要（8 * 7 / 2）28 次，时间复杂度为 O(n^2) 而归并排序只需要对比 16 次，每次合并操作的时间复杂度为O(n)，
 排序时间O(log2n), 一共的时间复杂度就是O(nlogn)。并且，比起一些排序算法来说，效率稳定。
 
-## 最大子序和
+## 最大子序和 (maximum-subarray)
+这是一道 LeetCode 的题目：
+[Jump link](https://leetcode.com/problems/maximum-subarray/submissions/)
+
 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
 
 例如:
@@ -108,6 +111,45 @@ JavaScript 详细代码：
 ```
 
 这个问题也可以使用分治法解决：
+```javascript
+  function subMaxSubArray(nums, left, right) {
+  
+    if (left === right) return nums[left];
+    // 取中间分割
+    let mid = ~~((left + right) / 2);
+    // 递归继续分割
+    let left_val = subMaxSubArray(nums, left, mid);
+    let right_val = subMaxSubArray(nums, mid + 1, right);
+    
+    // 取左侧最大值
+    let mid_left = nums[mid], sum_left = nums[mid];
+    for (let i = mid - 1; i >= left; i--) {
+      sum_left += nums[i];
+      mid_left = Math.max(mid_left,sum_left);
+    }
+    
+    // 取右侧最大值
+    let mid_right = nums[mid + 1], sum_right = nums[mid + 1];
+    for (let j = mid + 2; j <= right; j++) {
+      sum_right += nums[j];
+      mid_right = Math.max(mid_right,sum_right);
+    }
+    
+    // 取全部的和，三者求最大值
+    let mid_val = mid_left + mid_right;
+    return Math.max(left_val,right_val,mid_val);
+  }
 
- 
+  var maxSubArray = function (nums) {
+    return subMaxSubArray(nums, 0, nums.length - 1);
+  };
 
+  console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
+```
+
+## 总结
+
+> 尽管我知道目标，但是如果我只看接下来的这一步，
+我就能够避开恐慌和昏头转向。—— 莫顿·亨特 《走一步，再走一步》
+
+既然已经明白了什么是分治法，接下来不如就去看看和分治法异曲同工的动态规划吧。
