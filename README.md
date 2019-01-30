@@ -23,7 +23,7 @@
 ## 数据结构
 - [Tree 树结构](./JavaScript/Tree) | JavaScript —— 目录也是颗树...
 - [Red-black-tree 红黑树](./JavaScript/Tree/red-black-tree) | JavaScript —— 假如二叉树不平衡的时候，二分查找就失去了意义...
-
+- [Topological sorting 拓扑排序](./Python/Topological-Sorting) | Python —— 先穿袜子，再穿鞋子。这也是一种拓扑排序。
 
 ## 交流或者有一些问题 
 - 发布 issue
