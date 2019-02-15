@@ -97,6 +97,9 @@ JavaScript 详细代码：
 排序以上数组，一一对比需要（8 * 7 / 2）28 次，时间复杂度为 O(n^2) 而归并排序只需要对比 16 次，每次合并操作的时间复杂度为O(n)，
 排序时间O(log2n), 一共的时间复杂度就是O(nlogn)。并且，比起一些排序算法来说，效率稳定。
 
+| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |
+| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |
+| **Merge sort**        | n&nbsp;log(n)   | n&nbsp;log(n)       | n&nbsp;log(n)       | n         | Yes       |           |
 ## 最大子序和 (maximum-subarray)
 这是一道 LeetCode 的题目：
 [Jump link](https://leetcode.com/problems/maximum-subarray/submissions/)
